@@ -2,8 +2,9 @@ import React from "react";
 import { constants } from "../../constants/constants";
 import styles from "./sub_styles/moviedetails.module.scss";
 import TopBar from "../Movies/TopBar";
-import { Tag } from "antd";
-const MovieDetails = ({ movie }) => {
+import { Tag,List, Divider } from "antd";
+import MovieItem from "../Movies/MovieItem";
+const MovieDetails = ({ movie,movies }) => {
   console.log(movie);
   return (
     <>
@@ -49,6 +50,26 @@ const MovieDetails = ({ movie }) => {
             <p key={item.english_name} className={styles.language}>{item.english_name}</p>
           ))}
         </div>
+        <Divider/>
+        <p className={styles.title}> Popular movies</p>
+        <List
+            grid={{
+              gutter: 10,
+              xs: 2,
+              sm: 2,
+              md: 4,
+              lg: 4,
+              xl: 5,
+              xxl: 6,
+            }}
+            dataSource={movies}
+            renderItem={(item) => (
+              <List.Item key={item.email}>
+                <List.Item />
+                <MovieItem item={item} />
+              </List.Item>
+            )}
+          />
       </div>
     </>
   );

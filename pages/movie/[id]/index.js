@@ -4,11 +4,21 @@ import { constants } from "../../../constants/constants";
 import axios from "axios";
 import MovieDetails from "../../../components/Details/MovieDetails";
 export async function getServerSideProps(context) {
-  let movie = {};
+  let movie ,result= {};
   console.log(context.params.id);
   try {
     let data = { id: context.params.id };
+    
     const res = await axios.post(constants.LOCALURL + "movies/get_movie", data);
+    let info = { page: 1 };
+    const response = await axios.post(
+      constants.LOCALURL + "movies/get_movies",
+      info
+    );
+    if (response.data.data) {
+      result = response.data.data.data.results;
+      
+    }
     console.log(res.data.data);
     if (res.data.data) {
       movie = res.data.data.data;
@@ -16,6 +26,7 @@ export async function getServerSideProps(context) {
     return {
       props: {
         movie: movie,
+        result:result
       },
     };
   } catch (error) {
@@ -23,12 +34,13 @@ export async function getServerSideProps(context) {
     return {
       props: {
         movie: [],
+        result:[]
       },
     };
   }
 }
 
-const MovieInfo = ({ movie }) => {
+const MovieInfo = ({ movie,result }) => {
   return (
     <>
       <Head>
@@ -37,7 +49,7 @@ const MovieInfo = ({ movie }) => {
         <link rel="icon" href={constants.IMAGEURL + movie.poster_path} />
       </Head>
       <div>
-        <MovieDetails movie={movie} />
+        <MovieDetails movie={movie} movies={result}/>
       </div>
     </>
   );
