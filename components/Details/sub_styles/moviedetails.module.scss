@@ -1,0 +1,76 @@
+.moviesdetails {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  p {
+    margin: 0;
+  }
+  .info {
+    color: white;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border-radius: 20px;
+    display: flex;
+    .desc {
+      display: flex;
+      flex-direction: column;
+      margin-left: 20px;
+      margin-top: 50px;
+    }
+    .title {
+      margin-bottom: 10px;
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .data {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+  }
+  .poster {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+
+    width: 200px;
+    border-radius: 10px;
+  }
+  .production {
+    display: flex;
+    border-top: 2px solid white;
+    flex-wrap: wrap;
+  }
+  .logo {
+    margin: 10px;
+    width: 100px;
+  }
+  .overview {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+
+  .data{
+    margin-top: 10px;
+    display: flex;
+  }
+  .language {
+    border: 1px solid white;
+    margin: 5px;
+    padding: 5px 10px;
+    border-radius: 60px;
+  }
+}
+
+
+@media screen and (max-width: 450px) {
+  .info{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
